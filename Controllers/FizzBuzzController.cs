@@ -22,7 +22,7 @@ namespace SmallMVCApps.Controllers
         {
             if (model.BuzzValue == 0 || model.FizzValue == 0)
             {
-                ModelState.AddModelError("BuzzValue", "Es darf keine 0 ausgewählt werden!");
+                ModelState.AddModelError("BuzzValue", "0 is not a valid input!");
                 return View(model);
             }
 
