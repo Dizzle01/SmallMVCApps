@@ -1,0 +1,54 @@
+﻿@model SmallMVCApps.Models.FizzBuzz.FizzBuzzModel
+    
+<div class="container col-xxl-8 px-4 py-5 mt-5">
+    <div class="row gy-2 h-100 row-cols-md-2 row-cols-1">
+        <div class="col border-2 border-end">
+            <h1 class="font-weight-bold lh-1 mb-3">FizzBuzz</h1>
+            <h4 class="lead">
+                FizzBuzz Stuff happening!
+            </h4>
+            <h2 class="mt-5 border-2 border-bottom">Instructions</h2>
+            <p>Enter 2 numbers and create a FizzBuzz table!</p>
+        </div>
+
+        <div class="col">
+            <div>
+                <h5>Enter numbers</h5>
+                
+                @*Form goes here*@
+                <form class="row gy-2 gx-3" asp-action="FBPage" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <label asp-for="FizzValue">Fizz Value</label>
+                        <input type="number" asp-for="FizzValue" class="form-control" value="@Model.FizzValue" placeholder="Enter Fizz"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BuzzValue">Buzz Value</label>
+                        <input type="number" asp-for="BuzzValue" class="form-control" value="@Model.BuzzValue" placeholder="Enter Buzz"/>
+                        <span asp-validation-for="BuzzValue" class="text-danger"></span>
+                    </div>
+                    <button id="btnSubmit" type="submit" asp-controller="FizzBuzz" asp-action="FBPage" class="btn btn-dark">
+                        Submit
+                    </button>
+                </form>
+                
+
+                <h2 class="mt-5 border-bottom border-2">Result</h2>
+                <div class="table-responsive">
+                @* Table goes here *@
+                @if (@Model.Result.Count > 0)
+                {
+                    <table class="table-striped table-hover table table-dark">
+                        <thead>
+                            <tr><th colspan="5">FizzBuzzResults</th></tr>
+                        </thead>
+                        @for(int i = 0; i < @Model.Result.Count(); i += 5){
+                            <tr><td>@Model.Result[i]</td><td>@Model.Result[i + 1]</td><td>@Model.Result[i + 2]</td><td>@Model.Result[i + 3]</td><td>@Model.Result[i + 4]</td></tr>
+                        }
+                    </table> 
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
